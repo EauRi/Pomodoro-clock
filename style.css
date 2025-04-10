@@ -1,0 +1,170 @@
+/* Style global */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0; /* Supprimer les marges par défaut */
+    padding: 0; /* Supprimer les paddings par défaut */
+    background: linear-gradient(to right, #7826e4, #6d075c);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow: hidden; /* Empêcher le défilement */
+}
+
+.container {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Prendre toute la hauteur disponible */
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    margin: 0; /* Supprimer les marges */
+}
+
+p {
+    font-size: 18px;
+    margin: 0; /* Supprimer les marges */
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+    font-weight: bold;
+    margin: 0; /* Supprimer les marges */
+}
+
+.time-box {
+    margin: 0 10px;
+}
+
+.label {
+    font-size: 16px;
+    font-weight: normal;
+    color: #E0CFF2; /* Violet pastel clair pour un style apaisant */
+    font-family: 'Roboto', sans-serif; /* Police moderne et élégante */
+    text-transform: uppercase; /* Mettre le texte en majuscules */
+    letter-spacing: 1px; /* Espacement entre les lettres pour un style plus clair */
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espacement entre les éléments */
+    margin-top: 20px;
+}
+
+.options label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+}
+
+.options input {
+    margin-top: 5px;
+    padding: 8px;
+    font-size: 16px;
+    width: 80px;
+    text-align: center;
+    border: 2px solid #f5f5f5; /* Bordure gris clair */
+    border-radius: 8px;
+    background-color: #ffe6e6; /* Fond pastel rose clair */
+    color: #6D071A; /* Texte rouge foncé pour correspondre au fond */
+}
+
+.options input:focus {
+    outline: none;
+    border-color: #FFB6C1; /* Bordure rose clair au focus */
+    box-shadow: 0 0 5px rgba(255, 182, 193, 0.8); /* Ombre rose clair */
+}
+
+#startButton {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFFFFF; /* Blanc pour un contraste apaisant */
+    background-color: #9B59B6; /* Violet doux */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre subtile */
+    font-family: 'Poppins', sans-serif; /* Police moderne et élégante */
+}
+
+#startButton:hover {
+    background-color: #8E44AD; /* Violet légèrement plus foncé au survol */
+    transform: scale(1.05); /* Légère mise en avant */
+}
+
+#startButton:active {
+    background-color: #7D3C98; /* Violet encore plus foncé au clic */
+    transform: scale(0.95); /* Légère réduction pour un effet de clic */
+}
+
+/* Style pour le texte principal (h1) */
+h1#phaseTitle {
+    font-size: 60px;
+    font-weight: bold;
+    color: #E0CFF2; /* Violet pastel clair pour correspondre aux labels */
+    font-family: 'Poppins', sans-serif; /* Police moderne et élégante */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre subtile pour un effet de profondeur */
+}
+
+/* Media query pour les petits écrans */
+@media (max-width: 768px) {
+    h1#phaseTitle {
+        font-size: 40px; /* Réduire la taille du titre */
+    }
+
+    .countdown {
+        font-size: 40px; /* Réduire la taille des chiffres */
+    }
+
+    .options {
+        flex-direction: column; /* Empiler les options verticalement */
+        gap: 10px; /* Réduire l'espacement */
+    }
+
+    .options input {
+        font-size: 14px; /* Réduire la taille des champs */
+        width: 70px; /* Réduire la largeur des champs */
+    }
+
+    #startButton {
+        font-size: 16px; /* Réduire la taille du texte du bouton */
+        padding: 10px 20px; /* Réduire le padding */
+    }
+}
+
+/* Media query pour les très petits écrans (téléphones < 480px) */
+@media (max-width: 480px) {
+    h1#phaseTitle {
+        font-size: 30px; /* Réduire encore la taille du titre */
+    }
+
+    .countdown {
+        font-size: 30px; /* Réduire encore la taille des chiffres */
+    }
+
+    .options input {
+        font-size: 12px; /* Réduire encore la taille des champs */
+        width: 60px; /* Réduire encore la largeur des champs */
+    }
+
+    #startButton {
+        font-size: 14px; /* Réduire encore la taille du texte du bouton */
+        padding: 8px 16px; /* Réduire encore le padding */
+    }
+}

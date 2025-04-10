@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+
+    <!-- Lien vers le fichier CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Ajouter un lien pour les polices Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 id="phaseTitle">Timer</h1>
+        
+        <div class="countdown">
+            <div class="time-box">
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <div class="label">- HOURS -</div>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <div class="label">- MINUTES -</div>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <div class="label">- SECONDS -</div>
+            </div>
+        </div>
+        <div class="options">
+            <label>
+                Pomodoro (min)
+                <input type="number" id="pomodoroInput" value="25" min="1">
+            </label>
+            <label>
+                Pause courte (min)
+                <input type="number" id="shortBreakInput" value="5" min="1">
+            </label>
+            <label>
+                Cycle (min)
+                <input type="number" id="cycleInput" value="5" min="1">
+            </label>
+        </div>
+        <button id="startButton">Start</button>
+    </div>
+
+    <script>
+        function startTimer() {
+            // Récupérer les valeurs des champs input
+            const pomodoroTime = parseInt(document.getElementById("pomodoroInput").value) * 60; // Convertir en secondes
+            const shortBreakTime = parseInt(document.getElementById("shortBreakInput").value) * 60; // Convertir en secondes
+            const totalCycles = parseInt(document.getElementById("cycleInput").value); // Nombre total de cycles
+
+            // Cacher le bouton "Start"
+            document.getElementById("startButton").style.display = "none";
+
+            let elapsedTime = 0; // Temps écoulé en secondes
+            let currentPhase = "pomodoro"; // Phase actuelle : "pomodoro", "shortBreak"
+            let completedCycles = 0; // Nombre de cycles terminés
+
+            // Mettre à jour le titre principal (h1) en fonction de la phase
+            document.getElementById("phaseTitle").textContent = "Pomodoro"; // Phase initiale
+
+            function updateTimer() {
+                elapsedTime++;
+
+                const minutes = Math.floor(elapsedTime / 60);
+                const seconds = elapsedTime % 60;
+
+                document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+
+                // Vérifier si la phase actuelle est terminée
+                if (currentPhase === "pomodoro" && elapsedTime >= pomodoroTime) {
+                    currentPhase = "shortBreak";
+                    elapsedTime = 0; // Réinitialiser le compteur
+                    document.getElementById("phaseTitle").textContent = "Pause courte"; // Mettre à jour le titre
+                } else if (currentPhase === "shortBreak" && elapsedTime >= shortBreakTime) {
+                    completedCycles++; // Incrémenter le nombre de cycles terminés
+                    if (completedCycles >= totalCycles) {
+                        clearInterval(timerInterval); // Arrêter le timer
+                        document.getElementById("phaseTitle").textContent = "Terminé !"; // Afficher un message de fin
+                        return;
+                    }
+                    currentPhase = "pomodoro";
+                    elapsedTime = 0; // Réinitialiser le compteur
+                    document.getElementById("phaseTitle").textContent = "Pomodoro"; // Mettre à jour le titre
+                }
+            }
+
+            const timerInterval = setInterval(updateTimer, 1000); // Mettre à jour le timer toutes les secondes
+        }
+
+        document.getElementById("startButton").addEventListener("click", startTimer); // Lancer le timer au clic
+    </script>
+</body>
+</html>
